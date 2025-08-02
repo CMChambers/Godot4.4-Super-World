@@ -1,0 +1,62 @@
+[gd_scene load_steps=10 format=3 uid="uid://bbvljs5d26q1p"]
+
+[ext_resource type="Script" uid="uid://c6ahe3d1iob3u" path="res://Dev/Environment/Interior/Dungeon/Dungeon.cs" id="1_vso5n"]
+[ext_resource type="Script" uid="uid://8xlpyc5yk237" path="res://Dev/Environment/Interior/Dungeon/DungeonFillerSequencialRoom.cs" id="2_5u40b"]
+[ext_resource type="Script" uid="uid://5kuhrw56sbsn" path="res://Dev/Environment/Interior/Dungeon/DungeonFillerRandomRoom.cs" id="2_obftk"]
+[ext_resource type="Script" uid="uid://dxbouruqstovi" path="res://Dev/Environment/Interior/Dungeon/DungeonRenderer.cs" id="5_obftk"]
+[ext_resource type="PackedScene" uid="uid://bqev7lpbnw7u2" path="res://Debug/Debug Cube.tscn" id="6_7duk2"]
+[ext_resource type="Script" uid="uid://3jwk88043224" path="res://Dev/Environment/Interior/Dungeon/DungeonSettings.cs" id="7_7eeyx"]
+
+[sub_resource type="Resource" id="Resource_hcf7w"]
+script = ExtResource("2_obftk")
+failedAttemptsAllowed = 1000
+roomMinimumSize = 3
+roomMaximumSize = 10
+roomSquareDeviation = 0.61
+roomSquareDeviationChance = 0.0
+roomSquareDeviationMaximumPercent = 1.0
+enabled = true
+density = 0.51
+metadata/_custom_type_script = "uid://5kuhrw56sbsn"
+
+[sub_resource type="Resource" id="Resource_5u40b"]
+script = ExtResource("2_5u40b")
+startLocation = 0
+sizeMethod = 0
+roomMinimumSize = 1
+roomMaximumSize = 7
+roomSquareDeviation = 0.0
+roomSquareDeviationChance = 0.0
+roomSquareDeviationMaximumPercent = 0.0
+enabled = true
+density = 0.81
+metadata/_custom_type_script = "uid://8xlpyc5yk237"
+
+[sub_resource type="Resource" id="Resource_0lbyh"]
+script = ExtResource("7_7eeyx")
+fillDensityMethod = 1
+seedToUse = 0
+seed = "ransom seed"
+dungeonSize = Vector2i(50, 50)
+cellSize = 1
+Fillers = Array[Object]([SubResource("Resource_hcf7w"), SubResource("Resource_5u40b")])
+metadata/_custom_type_script = "uid://3jwk88043224"
+
+[node name="Dungeon" type="Node3D" node_paths=PackedStringArray("camera")]
+script = ExtResource("1_vso5n")
+camera = NodePath("Camera3D")
+RendererPath = NodePath("Renderer")
+generateMethod = 1
+renderMethod = 2
+settings = SubResource("Resource_0lbyh")
+
+[node name="Renderer" type="Node" parent="."]
+script = ExtResource("5_obftk")
+debugObject = ExtResource("6_7duk2")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -1, 3, -1)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.683013, -0.258819, 0.683013, -0.00623603, 0.933013, 0.359789, -0.73038, -0.25, 0.635646, 0, 5, 0)
+sky_mode = 1

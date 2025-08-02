@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0ahmiw2yohbm"]
+
+[ext_resource type="Script" uid="uid://ddtqc2cr4vjny" path="res://Dev/Environment/Exterior/World/Terrain (2)/Ground/GroundLayerGenerator.cs" id="1_th7kl"]
+
+[node name="Ground Layer Generator" type="Node"]
+script = ExtResource("1_th7kl")

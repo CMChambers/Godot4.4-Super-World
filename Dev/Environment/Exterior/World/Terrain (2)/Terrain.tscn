@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=3 uid="uid://caefmaa6hshcd"]
+
+[ext_resource type="Script" uid="uid://drbuaouw1f701" path="res://Dev/Environment/Exterior/World/Terrain (2)/Terrain.cs" id="1_f5x8r"]
+[ext_resource type="Script" uid="uid://dpx3ss4b1ppoa" path="res://Dev/Environment/Exterior/World/Terrain (2)/PlatformLayerGenerator.cs" id="3_7hqh1"]
+[ext_resource type="PackedScene" uid="uid://c0ahmiw2yohbm" path="res://Dev/Environment/Exterior/World/Terrain (2)/Ground/GroundLayerGenerator.tscn" id="5_865dw"]
+[ext_resource type="Script" uid="uid://txfgqwp2poep" path="res://Dev/Environment/Exterior/World/Terrain (2)/TreeLayerGenerator.cs" id="6_gds57"]
+
+[sub_resource type="Resource" id="Resource_serk0"]
+metadata/_custom_type_script = "uid://pg1f1e0sqgyn"
+
+[node name="Terrain" type="Node"]
+script = ExtResource("1_f5x8r")
+settings = SubResource("Resource_serk0")
+
+[node name="Tree Layer Generator" type="Node" parent="."]
+script = ExtResource("6_gds57")
+
+[node name="Platform Layer Generator" type="Node" parent="."]
+script = ExtResource("3_7hqh1")
+
+[node name="Ground Layer Generator" parent="." instance=ExtResource("5_865dw")]

@@ -1,0 +1,22 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		// {
+		// 	"type": "dotnet",
+		// 	"task": "watch Super World",
+		// 	"file": "F:\\Project Programs\\Super World\\Godot4.4 Super World\\Super World.csproj",
+		// 	"problemMatcher": [],
+		// 	"label": "dotnet: watch Super World"
+		// }
+
+		{
+            "label": "build",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build"
+            ],
+            "problemMatcher": "$msCompile"
+        }
+	]
+}

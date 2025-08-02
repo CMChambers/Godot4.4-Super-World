@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dc038hu6aia01"]
+
+[ext_resource type="Material" uid="uid://c6bs3l25rx3fs" path="res://Dev/Surfaces/Materials/water_shader_material_1.tres" id="1_1glch"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_gjbto"]
+material = ExtResource("1_1glch")
+size = Vector2(128, 128)
+
+[node name="Water Plane" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+mesh = SubResource("PlaneMesh_gjbto")

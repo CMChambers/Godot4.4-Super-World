@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjorq8sl50bc6"]
+
+[ext_resource type="Script" uid="uid://vdmx2s7fkcnl" path="res://Debug/basic/GDScript Node.gd" id="1_ef6a0"]
+[ext_resource type="Script" uid="uid://bumh18ieaax7i" path="res://Debug/basic/CSharpNode.cs" id="2_7yfdn"]
+
+[node name="BasicTest" type="Node3D"]
+
+[node name="GDScript Node" type="Node" parent="."]
+script = ExtResource("1_ef6a0")
+
+[node name="CSharpNode" type="Node" parent="."]
+script = ExtResource("2_7yfdn")

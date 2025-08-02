@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://b5h8vunvhk3eb"]
+
+[ext_resource type="PackedScene" uid="uid://cpbhmev7f77in" path="res://Dev/Characters/Player/Player v3_3.tscn" id="2_a2amw"]
+[ext_resource type="PackedScene" uid="uid://dclmucgmpt7dh" path="res://Dev/Characters/Player/player v4.tscn" id="2_lkjo6"]
+[ext_resource type="PackedScene" uid="uid://dpu6uw7bkwmmw" path="res://Dev/Characters/Player/Player v3.tscn" id="3_phcmb"]
+[ext_resource type="PackedScene" uid="uid://bk4hx1mc6mxsk" path="res://Dev/Characters/Player/player v2.tscn" id="4_jtoo7"]
+[ext_resource type="PackedScene" uid="uid://bj7k3me5q37s2" path="res://Dev/Characters/Player/player v1.tscn" id="5_0ov71"]
+
+[node name="PlayerDevSpawner" type="Node3D"]
+
+[node name="disabled" type="Node" parent="."]
+process_mode = 4
+
+[node name="Player Character V3_3" parent="disabled" instance=ExtResource("2_a2amw")]
+visible = false
+
+[node name="Player Character v2" parent="disabled" instance=ExtResource("4_jtoo7")]
+visible = false
+
+[node name="Player Character v1 (Basic Player)" parent="disabled" instance=ExtResource("5_0ov71")]
+visible = false
+
+[node name="Player Character V3_2" parent="disabled" instance=ExtResource("3_phcmb")]
+visible = false
+
+[node name="Player Character V4" parent="." instance=ExtResource("2_lkjo6")]

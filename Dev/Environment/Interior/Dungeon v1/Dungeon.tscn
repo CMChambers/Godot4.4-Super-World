@@ -1,0 +1,24 @@
+[gd_scene load_steps=7 format=3 uid="uid://dsyq77w56iygs"]
+
+[ext_resource type="Script" uid="uid://c28bv6eiddx7i" path="res://Dev/Environment/Interior/Dungeon v2/Dungeon (2).cs" id="1_kir3h"]
+[ext_resource type="Script" uid="uid://87tbommertp2" path="res://Dev/Environment/Interior/Dungeon/DungeonSettings (2).cs" id="2_lkffo"]
+[ext_resource type="Script" uid="uid://du6pijkskpnbw" path="res://Dev/Environment/Interior/Dungeon v1/BorderDrawer.cs" id="2_mm0oh"]
+[ext_resource type="MeshLibrary" uid="uid://b83dd500kexmo" path="res://Dev/Environment/Interior/Dungeon v1/Dungeon Tiles Mesh Library.tres" id="3_u8b3s"]
+
+[sub_resource type="Resource" id="Resource_gofg4"]
+script = ExtResource("2_lkffo")
+size = 0
+cellsAvailable = 0
+metadata/_custom_type_script = "uid://87tbommertp2"
+
+[sub_resource type="Resource" id="Resource_ysb6g"]
+script = ExtResource("2_mm0oh")
+
+[node name="Dungeon" type="Node3D"]
+script = ExtResource("1_kir3h")
+dungeonSettings = SubResource("Resource_gofg4")
+dungeonElements = Array[Object]([SubResource("Resource_ysb6g")])
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("3_u8b3s")
+cell_size = Vector3(1, 1, 1)

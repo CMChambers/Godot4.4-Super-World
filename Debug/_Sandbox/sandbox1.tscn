@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://4sjw1aa71c52"]
+
+[ext_resource type="PackedScene" uid="uid://bprchaopd57ig" path="res://Dev/Environment/Exterior/World/Terrain/basic_ground.tscn" id="1_y8bgb"]
+[ext_resource type="PackedScene" uid="uid://1vywiuwiwm0d" path="res://Dev/Environment/Furniture/basic_block.tscn" id="2_ludg7"]
+[ext_resource type="PackedScene" uid="uid://dpu6uw7bkwmmw" path="res://Dev/Characters/Player/Player v3.tscn" id="3_1r4gx"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pj7sh"]
+sky_top_color = Color(0.0392157, 0.27451, 1, 1)
+sky_horizon_color = Color(0.627451, 0.639216, 0.654902, 1)
+ground_bottom_color = Color(0, 0.403922, 0, 1)
+ground_horizon_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Sky" id="Sky_lv062"]
+sky_material = SubResource("ProceduralSkyMaterial_pj7sh")
+process_mode = 3
+
+[sub_resource type="Environment" id="Environment_5vo1m"]
+background_mode = 2
+sky = SubResource("Sky_lv062")
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_sky_contribution = 0.0
+reflected_light_source = 1
+
+[node name="Dev Scene" type="Node3D"]
+
+[node name="UI" type="Node" parent="."]
+
+[node name="Game" type="Node" parent="."]
+
+[node name="Environment" type="Node" parent="."]
+
+[node name="Terrain" type="Node" parent="Environment"]
+
+[node name="Basic Ground" parent="Environment/Terrain" instance=ExtResource("1_y8bgb")]
+
+[node name="Architecture" type="Node" parent="Environment"]
+
+[node name="Furniture" type="Node" parent="Environment"]
+
+[node name="BasicBlock1" parent="Environment/Furniture" instance=ExtResource("2_ludg7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="BasicBlock2" parent="Environment/Furniture" instance=ExtResource("2_ludg7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="BasicBlock3" parent="Environment/Furniture" instance=ExtResource("2_ludg7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="BasicBlock4" parent="Environment/Furniture" instance=ExtResource("2_ludg7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="Items" type="Node" parent="Environment"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_5vo1m")
+
+[node name="Characters" type="Node" parent="."]
+
+[node name="Player" type="Node" parent="Characters"]
+
+[node name="PlayerV3" parent="Characters/Player" instance=ExtResource("3_1r4gx")]
+
+[node name="Non-Player" type="Node" parent="Characters"]
+
+[node name="Items" type="Node" parent="."]

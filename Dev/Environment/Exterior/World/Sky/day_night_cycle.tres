@@ -1,0 +1,88 @@
+[gd_resource type="VisualShader" load_steps=8 format=3 uid="uid://cfm1hfw4eji0o"]
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_drvpr"]
+output_port_for_preview = 0
+constant = Color(1, 1, 0, 1)
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_006lw"]
+output_port_for_preview = 0
+default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(0, 0, 0, 0)]
+op_type = 2
+operator = 3
+
+[sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_0jlh2"]
+output_port_for_preview = 0
+default_input_values = [0, 0.0, 1, 0.0, 2, 0.0, 3, 0.0]
+op_type = 2
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_828kt"]
+constant = 2.0
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_txdeg"]
+constant = 3.0
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_3ywr3"]
+output_port_for_preview = 0
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_0b7qn"]
+input_name = "time"
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+
+
+
+void fragment() {
+// ColorConstant:3
+	vec4 n_out3p0 = vec4(1.000000, 1.000000, 0.000000, 1.000000);
+
+
+// FloatConstant:6
+	float n_out6p0 = 2.000000;
+
+
+// VectorCompose:5
+	vec4 n_out5p0 = vec4(n_out6p0, n_out6p0, n_out6p0, n_out6p0);
+
+
+// VectorOp:4
+	vec4 n_out4p0 = n_out3p0 / n_out5p0;
+
+
+// FloatConstant:7
+	float n_out7p0 = 3.000000;
+
+
+// Input:9
+	float n_out9p0 = TIME;
+
+
+// FloatOp:8
+	float n_out8p0 = n_out7p0 + n_out9p0;
+
+
+// Output:0
+	ALBEDO = vec3(n_out4p0.xyz);
+	EMISSION = vec3(n_out8p0);
+
+
+}
+"
+nodes/fragment/0/position = Vector2(480, 280)
+nodes/fragment/3/node = SubResource("VisualShaderNodeColorConstant_drvpr")
+nodes/fragment/3/position = Vector2(-260, 120)
+nodes/fragment/4/node = SubResource("VisualShaderNodeVectorOp_006lw")
+nodes/fragment/4/position = Vector2(60, 140)
+nodes/fragment/5/node = SubResource("VisualShaderNodeVectorCompose_0jlh2")
+nodes/fragment/5/position = Vector2(-260, 440)
+nodes/fragment/6/node = SubResource("VisualShaderNodeFloatConstant_828kt")
+nodes/fragment/6/position = Vector2(-660, 500)
+nodes/fragment/7/node = SubResource("VisualShaderNodeFloatConstant_txdeg")
+nodes/fragment/7/position = Vector2(-240, 960)
+nodes/fragment/8/node = SubResource("VisualShaderNodeFloatOp_3ywr3")
+nodes/fragment/8/position = Vector2(89, 913)
+nodes/fragment/9/node = SubResource("VisualShaderNodeInput_0b7qn")
+nodes/fragment/9/position = Vector2(-360, 1080)
+nodes/fragment/connections = PackedInt32Array(3, 0, 4, 0, 4, 0, 0, 0, 5, 0, 4, 1, 6, 0, 5, 0, 6, 0, 5, 1, 6, 0, 5, 2, 6, 0, 5, 3, 7, 0, 8, 0, 8, 0, 0, 5, 9, 0, 8, 1)

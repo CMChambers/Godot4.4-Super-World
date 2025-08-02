@@ -1,0 +1,54 @@
+[gd_scene load_steps=10 format=3 uid="uid://dclmucgmpt7dh"]
+
+[ext_resource type="Script" uid="uid://twq3a610nwnp" path="res://Dev/Characters/Player/Movement/MovementController.cs" id="1_npl1e"]
+[ext_resource type="Script" uid="uid://bg7nd87pyvnxj" path="res://Dev/Characters/Player/Movement/Walk.cs" id="2_hffv7"]
+[ext_resource type="Script" uid="uid://bb3a7q5ifsi6x" path="res://Dev/Characters/Player/Movement/LookController.cs" id="2_tmfn3"]
+[ext_resource type="PackedScene" uid="uid://gs3c3bqlul0h" path="res://Dev/Game/player_input_handler.tscn" id="3_i5eg1"]
+
+[sub_resource type="Resource" id="Resource_v1qhd"]
+script = ExtResource("2_tmfn3")
+metadata/_custom_type_script = "uid://bb3a7q5ifsi6x"
+
+[sub_resource type="Resource" id="Resource_r28qu"]
+script = ExtResource("2_hffv7")
+walkAcceleration = 10.0
+walkDrag = 10.0
+walkSpeed = 10.0
+walkMaxSpeed = 10.0
+metadata/_custom_type_script = "uid://bg7nd87pyvnxj"
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4a626"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_30uwc"]
+albedo_color = Color(0.172549, 0.160784, 1, 1)
+roughness = 0.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_tmfn3"]
+
+[node name="Player Character V4" type="CharacterBody3D" node_paths=PackedStringArray("playerInputHandler", "cameraRotation", "cameraPivot")]
+script = ExtResource("1_npl1e")
+playerInputHandler = NodePath("PlayerInputHandler")
+cameraRotation = NodePath("Camera Rotate")
+cameraPivot = NodePath("Camera Rotate/Camera Pivot")
+look = SubResource("Resource_v1qhd")
+arcadeMovementTypes = Array[Object]([SubResource("Resource_r28qu")])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_4a626")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+material_override = SubResource("StandardMaterial3D_30uwc")
+mesh = SubResource("CapsuleMesh_tmfn3")
+
+[node name="PlayerInputHandler" parent="." instance=ExtResource("3_i5eg1")]
+invertJoystickVertical = true
+MouseLookSpeed = Vector2(1, 1)
+
+[node name="Camera Rotate" type="Node3D" parent="."]
+
+[node name="Camera Pivot" type="Node3D" parent="Camera Rotate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Camera Rotate/Camera Pivot"]
+current = true

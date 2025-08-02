@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://8ofh01lmjrvs"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_17w2e"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_dv35i"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_auemu"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_gr5sn"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_45tf5"]
+
+[node name="body" type="Node3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.1, 0)
+
+[node name="head" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+mesh = SubResource("SphereMesh_17w2e")
+skeleton = NodePath("../..")
+
+[node name="chest" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0.25, 0)
+mesh = SubResource("CapsuleMesh_dv35i")
+skeleton = NodePath("../..")
+
+[node name="torso" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.5, 0)
+visible = false
+mesh = SubResource("CylinderMesh_auemu")
+
+[node name="legs" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.75, 0, 0, 0, 1.2, 0, 0, 0, 0.75, 0, -1, 0)
+visible = false
+mesh = SubResource("CapsuleMesh_gr5sn")
+
+[node name="shoulder L" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, -0.6, 0.5, 0)
+mesh = SubResource("SphereMesh_45tf5")
+skeleton = NodePath("../chest")
+
+[node name="shoulder R" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0.6, 0.5, 0)
+mesh = SubResource("SphereMesh_45tf5")
+skeleton = NodePath("../chest")

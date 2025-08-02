@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://dfyjiajv7pl17"]
+
+[node name="Advanced Player" type="CharacterBody3D"]

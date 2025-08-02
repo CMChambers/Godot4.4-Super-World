@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bprchaopd57ig"]
+
+[ext_resource type="Material" uid="uid://b0nwsd1gpij5n" path="res://Dev/Surfaces/Materials/basic_ground_material.tres" id="1_rq3it"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_aoesu"]
+size = Vector3(10, 1, 10)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_pr3qt"]
+material = ExtResource("1_rq3it")
+size = Vector2(10, 10)
+
+[node name="Basic Ground" type="StaticBody3D"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_aoesu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_pr3qt")

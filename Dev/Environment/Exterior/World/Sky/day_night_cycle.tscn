@@ -1,0 +1,86 @@
+[gd_scene load_steps=6 format=3 uid="uid://desbat07b1eee"]
+
+[ext_resource type="PackedScene" uid="uid://d3a0didnao4ks" path="res://Dev/Environment/Exterior/World/Sky/sun_object_1.tscn" id="1_68n2r"]
+
+[sub_resource type="Animation" id="Animation_iumto"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:rotation:z")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.001)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../WorldEnvironment:environment:background_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ek2wq"]
+resource_name = "SunLightRotation"
+length = 24.0
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:rotation:z")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 6.28319, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 24)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../WorldEnvironment:environment:background_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(6.1, 17.9),
+"transitions": PackedFloat32Array(-10, -10),
+"update": 0,
+"values": [Color(0.168627, 0.407843, 0.85098, 1), Color(0, 0, 0.0588235, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4ooi5"]
+_data = {
+&"RESET": SubResource("Animation_iumto"),
+&"SunLightRotation": SubResource("Animation_ek2wq")
+}
+
+[sub_resource type="Environment" id="Environment_co1ef"]
+background_mode = 1
+
+[node name="DayNightCycle" type="Node3D"]
+
+[node name="SunRotationPoint" type="Node3D" parent="."]
+
+[node name="SunLight" type="DirectionalLight3D" parent="SunRotationPoint"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="SunObject" parent="SunRotationPoint" instance=ExtResource("1_68n2r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1000, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../SunRotationPoint/SunLight")
+libraries = {
+&"": SubResource("AnimationLibrary_4ooi5")
+}
+autoplay = "SunLightRotation"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_co1ef")

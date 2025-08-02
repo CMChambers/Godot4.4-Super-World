@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://dpu6uw7bkwmmw"]
+
+[ext_resource type="PackedScene" uid="uid://c5uv6yf5yx0px" path="res://Dev/Characters/Player/visuals/Player Body v1.tscn" id="1_dvkiq"]
+[ext_resource type="Script" uid="uid://df6uj25f58vos" path="res://Dev/Characters/Player/Player v3-2.gd" id="1_q0dfy"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mi0ae"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_x3uqb"]
+
+[node name="Player Character V3" type="CharacterBody3D"]
+script = ExtResource("1_q0dfy")
+Joystick_Look_Speed = 5.0
+max_speed = 15.0
+friction = 0.1
+Jump_Fall_Time = 0.3
+Jump_Velocity = 7.0
+Version = 3.2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_mi0ae")
+
+[node name="Visuals" type="Node3D" parent="."]
+
+[node name="PlayerBodyV1" parent="Visuals" instance=ExtResource("1_dvkiq")]
+
+[node name="Camera Pivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Camera Pivot"]
+current = true
+
+[node name="hand R" type="Node3D" parent="Camera Pivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, -0.25, -0.25)
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Camera Pivot/hand R"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+mesh = SubResource("SphereMesh_x3uqb")
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="CoyoteTimer" to="." method="Coyote_Timeout"]

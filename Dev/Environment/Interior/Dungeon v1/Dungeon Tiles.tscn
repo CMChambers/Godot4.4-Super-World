@@ -1,0 +1,48 @@
+[gd_scene load_steps=11 format=3 uid="uid://b1hhd7xcd216r"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l35pb"]
+albedo_color = Color(1, 0.690196, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cradq"]
+material = SubResource("StandardMaterial3D_l35pb")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vmv71"]
+albedo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ffoaq"]
+material = SubResource("StandardMaterial3D_vmv71")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y3ohy"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bf34v"]
+material = SubResource("StandardMaterial3D_y3ohy")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_skbsx"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7cixl"]
+material = SubResource("StandardMaterial3D_skbsx")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_51kja"]
+albedo_color = Color(0, 0, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_svnv7"]
+material = SubResource("StandardMaterial3D_51kja")
+
+[node name="Dungeon Tiles" type="Node2D"]
+
+[node name="Boarder" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_cradq")
+
+[node name="Room" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_ffoaq")
+
+[node name="Hallway" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_bf34v")
+
+[node name="Door" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_7cixl")
+
+[node name="Perimeter" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_svnv7")

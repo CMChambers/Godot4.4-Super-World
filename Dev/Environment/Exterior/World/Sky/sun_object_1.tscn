@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3a0didnao4ks"]
+
+[ext_resource type="SphereMesh" uid="uid://4s6mfh841v2p" path="res://Dev/Environment/Exterior/World/Sky/sun_1.tres" id="1_ud0rq"]
+
+[node name="SunObject" type="MeshInstance3D"]
+mesh = ExtResource("1_ud0rq")
+skeleton = NodePath("../SunLight")

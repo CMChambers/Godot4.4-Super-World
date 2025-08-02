@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://c1l1jfoonea7b"]
+
+[ext_resource type="PackedScene" uid="uid://b8ld8g1o4lmiv" path="res://Dev/Environment/Exterior/World/Terrain/terrain.tscn" id="1_0r8ni"]
+[ext_resource type="PackedScene" uid="uid://dc038hu6aia01" path="res://Dev/Environment/Exterior/World/Water/water_plane_1.tscn" id="2_1qgba"]
+[ext_resource type="PackedScene" uid="uid://b5h8vunvhk3eb" path="res://Dev/Characters/Player/player_dev_spawner.tscn" id="3_jemjx"]
+[ext_resource type="PackedScene" uid="uid://xnslomaudhjh" path="res://Dev/Environment/Exterior/World/Water/water_cube_1.tscn" id="4_c3067"]
+[ext_resource type="PackedScene" uid="uid://desbat07b1eee" path="res://Dev/Environment/Exterior/World/Sky/day_night_cycle.tscn" id="5_lfe41"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vafak"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_dokdj"]
+
+[node name="Sandbox0" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.711439, -0.391932, 0.583304, 0, 0.830033, 0.557714, -0.702747, -0.39678, 0.590518, 19.0364, 18.2012, 19.2718)
+current = true
+
+[node name="Terrain" parent="." instance=ExtResource("1_0r8ni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.045, 0)
+material_override = SubResource("StandardMaterial3D_vafak")
+size_depth = 10
+size_width = 10
+mesh_resolution = 5
+
+[node name="Water Plane" parent="." instance=ExtResource("2_1qgba")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="PlayerDevSpawner" parent="." instance=ExtResource("3_jemjx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 0)
+
+[node name="cube" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+mesh = SubResource("BoxMesh_dokdj")
+skeleton = NodePath("../Water Plane")
+
+[node name="Water Cube" parent="." instance=ExtResource("4_c3067")]
+
+[node name="DayNightCycle" parent="." instance=ExtResource("5_lfe41")]
+transform = Transform3D(-0.378704, -0.872073, -0.309953, 0.883422, -0.440458, 0.159881, -0.27595, -0.213272, 0.937212, 0, 0, 0)

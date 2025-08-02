@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://737lslv7ucsp"]
+
+[node name="Deploy Scene" type="Node3D"]
+
+[node name="UI" type="Node" parent="."]
+
+[node name="Game" type="Node" parent="."]
+
+[node name="Characters" type="Node" parent="."]
+
+[node name="Player" type="Node" parent="Characters"]
+
+[node name="Non-Player" type="Node" parent="Characters"]
+
+[node name="Environment" type="Node" parent="."]

@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://tnyisjkud1x6"]
+
+[ext_resource type="Script" uid="uid://ca4jxrt67akgl" path="res://Dev/Procedural Generation/value_grid_2d.gd" id="1_d5igc"]
+[ext_resource type="Script" uid="uid://brwhchsdogbbr" path="res://Dev/Procedural Generation/value_layer.gd" id="2_ehqcc"]
+
+[sub_resource type="Resource" id="Resource_svcn7"]
+script = ExtResource("2_ehqcc")
+enabled = true
+clipping_mask = false
+gain = 1.0
+y_offset = 0.0
+value_source = 0
+value_range = 0
+octaves = 1
+frequency = 1.0
+amplitude = 1.0
+offset = Vector2(0, 0)
+offset_move_speed = Vector2(0, 0)
+metadata/_custom_type_script = "uid://brwhchsdogbbr"
+
+[node name="ValueGrid2D" type="Node"]
+script = ExtResource("1_d5igc")
+layers = Array[ExtResource("2_ehqcc")]([SubResource("Resource_svcn7")])

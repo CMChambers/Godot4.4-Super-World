@@ -1,0 +1,91 @@
+[gd_scene load_steps=18 format=3 uid="uid://bdqln4arsigln"]
+
+[ext_resource type="Script" uid="uid://c6ahe3d1iob3u" path="res://Dev/Environment/Interior/Dungeon/Dungeon.cs" id="1_vso5n"]
+[ext_resource type="Script" uid="uid://c3e30hr2olpg6" path="res://Dev/Environment/Interior/Dungeon/DungeonFillerDoor.cs" id="2_7duk2"]
+[ext_resource type="Script" uid="uid://bx5jdary6y3xt" path="res://Dev/Environment/Interior/Dungeon/DungeonFillerCave.cs" id="3_anur3"]
+[ext_resource type="Script" uid="uid://djd5602u8amhw" path="res://Dev/Environment/Interior/Dungeon/DungeonFillerHallway.cs" id="4_wc3xt"]
+[ext_resource type="Script" uid="uid://8xlpyc5yk237" path="res://Dev/Environment/Interior/Dungeon/DungeonFillerSequencialRoom.cs" id="5_7tgku"]
+[ext_resource type="Script" uid="uid://5kuhrw56sbsn" path="res://Dev/Environment/Interior/Dungeon/DungeonFillerRandomRoom.cs" id="6_6pd3v"]
+[ext_resource type="Script" uid="uid://3jwk88043224" path="res://Dev/Environment/Interior/Dungeon/DungeonSettings.cs" id="7_7eeyx"]
+[ext_resource type="Script" uid="uid://bkpiuufvsrnee" path="res://Dev/Environment/Interior/Dungeon/slider_test.gd" id="8_k55ex"]
+
+[sub_resource type="Resource" id="Resource_lgebe"]
+script = ExtResource("2_7duk2")
+addDoors = true
+doorwayDensity = 100.0
+doorDensity = 100.0
+metadata/_custom_type_script = "uid://c3e30hr2olpg6"
+
+[sub_resource type="Resource" id="Resource_7askd"]
+script = ExtResource("3_anur3")
+minSize = 0
+maxSize = 0
+squareDeviation = 0
+Density = 0.2
+doors = SubResource("Resource_lgebe")
+metadata/_custom_type_script = "uid://bx5jdary6y3xt"
+
+[sub_resource type="Resource" id="Resource_umnw1"]
+script = ExtResource("2_7duk2")
+addDoors = true
+doorwayDensity = 100.0
+doorDensity = 100.0
+metadata/_custom_type_script = "uid://c3e30hr2olpg6"
+
+[sub_resource type="Resource" id="Resource_krpga"]
+script = ExtResource("4_wc3xt")
+turnChance = 0
+deadEndChance = 0
+forkChance = 0
+Density = 0.2
+doors = SubResource("Resource_umnw1")
+metadata/_custom_type_script = "uid://djd5602u8amhw"
+
+[sub_resource type="Resource" id="Resource_kcyj4"]
+script = ExtResource("2_7duk2")
+addDoors = true
+doorwayDensity = 100.0
+doorDensity = 100.0
+metadata/_custom_type_script = "uid://c3e30hr2olpg6"
+
+[sub_resource type="Resource" id="Resource_f7k6v"]
+script = ExtResource("5_7tgku")
+minSize = 0
+maxSize = 0
+squareDeviation = 0.0
+startLocation = 0
+Density = 0.2
+doors = SubResource("Resource_kcyj4")
+metadata/_custom_type_script = "uid://8xlpyc5yk237"
+
+[sub_resource type="Resource" id="Resource_1rjug"]
+script = ExtResource("2_7duk2")
+addDoors = true
+doorwayDensity = 100.0
+doorDensity = 100.0
+metadata/_custom_type_script = "uid://c3e30hr2olpg6"
+
+[sub_resource type="Resource" id="Resource_xt8nr"]
+script = ExtResource("6_6pd3v")
+minSize = 0
+maxSize = 0
+squareDeviation = 0
+Density = 0.2
+doors = SubResource("Resource_1rjug")
+metadata/_custom_type_script = "uid://5kuhrw56sbsn"
+
+[sub_resource type="Resource" id="Resource_67fip"]
+script = ExtResource("7_7eeyx")
+seedToUse = 0
+seed = "ransom seed"
+dungeonSize = Vector2i(10, 10)
+cellSize = 1
+Fillers = Array[Object]([SubResource("Resource_7askd"), SubResource("Resource_krpga"), SubResource("Resource_f7k6v"), SubResource("Resource_xt8nr")])
+metadata/_custom_type_script = "uid://3jwk88043224"
+
+[node name="Dungeon" type="Node3D"]
+script = ExtResource("1_vso5n")
+settings = SubResource("Resource_67fip")
+
+[node name="sliderTest" type="Node" parent="."]
+script = ExtResource("8_k55ex")

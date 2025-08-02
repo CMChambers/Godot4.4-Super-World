@@ -1,0 +1,47 @@
+[gd_scene load_steps=10 format=3 uid="uid://b8ld8g1o4lmiv"]
+
+[ext_resource type="Script" uid="uid://c51e6iq7vj88s" path="res://Dev/Environment/Exterior/World/Terrain/Terrain.gd" id="1_j5chv"]
+[ext_resource type="Script" uid="uid://7xndq754khob" path="res://Dev/Procedural Generation/random_texture_2d.gd" id="2_04wif"]
+[ext_resource type="Script" uid="uid://ca4jxrt67akgl" path="res://Dev/Procedural Generation/value_grid_2d.gd" id="2_mw2af"]
+[ext_resource type="Script" uid="uid://brwhchsdogbbr" path="res://Dev/Procedural Generation/value_layer.gd" id="3_up13t"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ss46l"]
+noise_type = 2
+fractal_octaves = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_68unk"]
+seamless = true
+noise = SubResource("FastNoiseLite_ss46l")
+
+[sub_resource type="Resource" id="Resource_85fgw"]
+script = ExtResource("2_04wif")
+width = 100
+height = 100
+
+[sub_resource type="Resource" id="Resource_hrbm7"]
+script = ExtResource("3_up13t")
+enabled = true
+clipping_mask = false
+gain = 11.084
+y_offset = 0.0
+value_source = 1
+random_textrue = SubResource("Resource_85fgw")
+noise_texture = SubResource("NoiseTexture2D_68unk")
+value_range = 0
+octaves = 1
+frequency = 1.0
+amplitude = 1.0
+offset = Vector2(0, 0)
+offset_move_speed = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_tx0oc"]
+script = ExtResource("2_mw2af")
+layers = Array[ExtResource("3_up13t")]([SubResource("Resource_hrbm7")])
+
+[node name="Terrain" type="MeshInstance3D"]
+lod_bias = 0.001
+script = ExtResource("1_j5chv")
+size_depth = 200
+size_width = 200
+mesh_resolution = 3
+value_grid_2d = SubResource("Resource_tx0oc")
